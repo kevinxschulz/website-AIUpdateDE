@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Update – Dein tägliches KI-Update in 2 Minuten</title>
+  <meta name="description" content="Kurz, verständlich, relevant: Die wichtigsten News zu ChatGPT, Meta, OpenAI & Co. – kostenlos direkt in dein Postfach." />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="AI Update – Dein tägliches KI-Update in 2 Minuten" />
+  <meta property="og:description" content="Kurz, verständlich, relevant – kostenlos in dein Postfach." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ai-update.de/" />
+  <meta name="theme-color" content="#00C853" />
+
+  <!-- Favicon / Icons -->
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="assets/site.webmanifest">
+
+  <style>
+    :root{
+      --accent:#00C853;
+      --accent-2:#64DD17;
+      --bg:#ffffff;
+      --fg:#0f1720;
+      --muted:#5b6775;
+      --card:#fcfcfc;
+      --ring: rgba(0,200,83,.35);
+      --radius:18px;
+      --shadow: 0 10px 24px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.5;
+    }
+
+    /* ÄUSSERER Container */
+    main{
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    /* Grid */
+    .wrap{
+      max-width:1100px;
+      width: 100%;
+      display:grid;
+      gap:48px;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+    }
+
+    header{display:flex; align-items:center; gap:14px; margin-bottom:8px}
+    .logo{
+      width:44px;height:44px;border-radius:12px;background:radial-gradient(60% 60% at 30% 30%, var(--accent-2), var(--accent));
+      display:grid;place-items:center;box-shadow:var(--shadow)
+    }
+    h1{font-size:clamp(28px, 4vw, 46px); line-height:1.1; margin:12px 0 12px}
+    p.lead{font-size:clamp(16px,2.2vw,19px); color:var(--muted); margin:0 0 24px}
+
+    .card{
+      background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
+    }
+
+    /* Formular */
+    form{display:flex; gap:12px; flex-wrap:wrap}
+    .input{ position:relative; flex:1 1 320px; }
+    input[type="email"]{
+      width:100%; font-size:16px; padding:14px 16px;
+      border:1.5px solid #e5e9ef; border-radius:14px; outline:none; background:#fff; color:var(--fg);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input[type="email"]:focus{ border-color:var(--accent); box-shadow:0 0 0 6px var(--ring); }
+    button{
+      appearance:none; border:none; cursor:pointer;
+      padding:14px 18px; border-radius:14px; font-weight:700; font-size:16px;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#fff; box-shadow:var(--shadow); transition: transform .05s ease, filter .2s ease;
+    }
+    button:hover{filter:brightness(1.05)} button:active{transform:translateY(1px)}
+    .note{font-size:13px; color:var(--muted); margin-top:10px}
+    .success,.error{display:none; margin-top:14px; padding:12px 14px; border-radius:12px; font-size:15px}
+    .success{background:rgba(0,200,83,.08); color:#0f7a3a; border:1px solid rgba(0,200,83,.25)}
+    .error{background:#fff1f0; color:#a8071a; border:1px solid #ffccc7}
+
+    /* Rechte Spalte – Newsletter-Preview */
+    .phone{
+      width:min(430px, 85%); margin:0 auto; border-radius:32px; background:#0b0f14;
+      border:10px solid #0b0f14; box-shadow: 0 20px 60px rgba(0,0,0,.18);
+      aspect-ratio: 9/19.5; display:flex; padding:18px; align-items: center;
+    }
+    .mail{ background:#ffffff; border-radius:16px; padding:16px; width:100%; overflow:hidden; }
+    .mail h3{margin:0 0 6px; font-size:16px}
+    .pill{display:inline-block; font-size:12px; background:rgba(0,200,83,.1); color:#0f7a3a; padding:4px 8px; border-radius:999px; margin-bottom:10px}
+
+    .newslist{ list-style:none; padding:0; margin:14px 0 0; }
+    .newslist li{
+      font-size:14px; line-height:1.4; margin:10px 0; padding-left:4px; color:var(--fg);
+      border-left:3px solid var(--accent);
+    }
+
+    /* Desktop: ohne Scrollbars */
+    @media (min-width: 921px){
+      html, body { overflow: hidden; height: 100vh; }
+      main { height: 100vh; padding: 0 20px; }
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .wrap{ grid-template-columns:1fr; gap:28px; }
+      .preview{ order:-1; }
+      .phone{ width:92%; }
+    }
+
+    /* Dark-mode */
+    @media (prefers-color-scheme: dark){
+      :root{ --bg:#0b0e11; --fg:#e9eef5; --muted:#a3b0c2; --card:#0f141a; --ring:rgba(0,200,83,.35) }
+      input[type="email"]{background:#0b0f14; border-color:#1f2a37; color:var(--fg)}
+      .mail{background:#0f141a; color:#e9eef5}
+    }
+
+    footer { margin: 38px 0 0; text-align:center; color: var(--muted); font-size:14px; }
+    footer a { color: var(--muted); text-decoration: underline; }
+
+    /* A11y helper */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="wrap">
+      <!-- Linke Spalte -->
+      <section>
+        <header>
+          <div class="logo">
+            <img src="assets/Logo.png" alt="AI Update Logo" style="height:44px;width:auto;border-radius:12px;" />
+          </div>
+          <strong>AI Update</strong>
+        </header>
+
+        <h1>Dein tägliches KI-Update in 2&nbsp;Minuten</h1>
+        <p class="lead">🚀 Kurz, verständlich und auf den Punkt: Die wichtigsten News zu ChatGPT, Meta, OpenAI &amp; Co.<br>
+          <b>kompakt. kostenlos. direkt in dein Postfach.</b></p>
+
+        <div class="card">
+          <!-- Brevo: nur Action-URL & Feldnamen nutzen -->
+          <form id="signupForm"
+                method="post"
+                accept-charset="utf-8"
+                action="https://b71ab60e.sibforms.com/serve/MUIFALL4nzaT05IAWzZtAXddMstUTtIxKfBZV2NWp6YUf3V0qu-kRBqHVmCOvsb5dGwyXmqIjEdWN0YoUMipCvwL9KuIMsox_ks0M8BbQDrLZlv0FXwNydz7epEjBEMwFSFPka5JuM8AdS2Uk_hvqfU3DGR6sveZeSXsZAarg83UXjN1uSDui6qKSOoCgAGyzMPfboBufwxLFYiG">
+            <div class="input">
+              <label class="sr-only" for="email">E-Mail-Adresse</label>
+              <input id="email" name="EMAIL" type="email" inputmode="email" autocomplete="email"
+                     placeholder="Deine E-Mail-Adresse" required
+                     pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                     aria-describedby="signupNote" />
+              <!-- Honeypot -->
+              <input type="text" name="email_address_check" tabindex="-1" autocomplete="off"
+                     style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
+            </div>
+
+            <input type="hidden" name="locale" value="de">
+
+            <button id="submitBtn" type="submit">Kostenlos abonnieren</button>
+            <div class="note" id="signupNote">Jederzeit abmeldbar</div>
+          </form>
+
+          <div class="success" id="success" role="status" aria-live="polite">
+            ✅ Danke! Bitte prüfe dein Postfach und bestätige deine Anmeldung.
+          </div>
+          <div class="error" id="error" role="alert">
+            ❌ Uups – das hat nicht geklappt. Bitte später erneut versuchen.
+          </div>
+        </div>
+
+        <footer>
+          <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+        </footer>
+      </section>
+
+      <!-- Rechte Spalte (Mockup) -->
+      <aside class="preview" aria-hidden="true">
+        <div class="phone">
+          <div class="mail">
+            <span class="pill">AI Update • Daily</span>
+            <h3>Die 5 wichtigsten KI-News heute</h3>
+            <ul class="newslist">
+              <li>🤖 ChatGPT-Update: Neue Features veröffentlicht</li>
+              <li>⚡ Meta löst KI-Labor nach nur 50 Tagen auf</li>
+              <li>🧠 OpenAI testet geheimes „Superintelligence"-Projekt</li>
+              <li>📉 KI-Aktien unter Druck nach EU-Regelungen</li>
+              <li>🚀 Start-up bringt revolutionäres AI-Tool auf den Markt</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <noscript>
+    <div class="card" style="max-width:680px;margin:24px auto">
+      Bitte aktiviere JavaScript, um dich einzutragen. Alternativ: schreibe an
+      <a href="mailto:info@ai-update.de">info@ai-update.de</a>.
+    </div>
+  </noscript>
+
+  <script>
+    // Zeige Status basierend auf Redirect-Query (in Brevo Erfolg => https://ai-update.de/?ok=1; Fehler => ?err=1)
+    const ok = document.getElementById('success');
+    const err = document.getElementById('error');
+    const q = new URLSearchParams(location.search);
+    if (q.get('ok') === '1') ok.style.display = 'block';
+    if (q.get('err') === '1') err.style.display = 'block';
+  </script>
+</body>
+</html>
